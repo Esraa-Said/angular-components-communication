@@ -39,6 +39,7 @@ export class AddProductComponent {
     }
   }
   onSubmit(): void {
+    console.log('submit');
     if (this.myForm.valid) {
       const product = this.myForm.value;
       if (this.imagePreview) {

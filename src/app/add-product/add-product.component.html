@@ -66,12 +66,12 @@
             !fileValid
           "
         >
-          *Only image files (png, jpeg, gif, svg) are allowed.
+          *Only image files (png, jpeg, gif) are allowed.
         </div>
       </div>
 
       <div class="form-elements">
-        <button type="submit">Add</button>
+        <button type="submit" [disabled]="myForm.invalid">Add</button>
       </div>
     </form>
   </div>

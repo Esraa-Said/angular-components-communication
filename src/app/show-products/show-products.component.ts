@@ -16,4 +16,8 @@ export class ShowProductsComponent implements OnInit {
       (products) => (this.products = products)
     );
   }
+
+  deleteProduct(index: number){
+    this.products.splice(index, 1);
+  }
 }
