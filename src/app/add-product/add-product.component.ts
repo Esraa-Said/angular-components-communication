@@ -9,6 +9,8 @@ import { DataService } from '../Services/data.service';
 })
 export class AddProductComponent {
   myForm!: FormGroup;
+  imagePreview: string | ArrayBuffer | null = null;
+
   constructor(private products: DataService) {
     this.myForm = new FormGroup({
       name: new FormControl(null),
@@ -17,12 +19,28 @@ export class AddProductComponent {
     });
   }
 
-  onSubmit() {
-    console.log('s');
-    const product = this.myForm.value;
-    if (product.name && product.price && product.photo) {
+  onFileSelected(event: Event): void {
+    const file = (event.target as HTMLInputElement).files![0];
+    const fileReader = new FileReader();
+    
+    fileReader.onload = (fileReaderEvent) => {
+      this.imagePreview = fileReaderEvent.target!.result;
+    };
+    
+    fileReader.readAsDataURL(file);
+  }
+
+
+    onSubmit(): void {
+    if (this.myForm.valid) {
+      const product = this.myForm.value;
+      if (this.imagePreview) {
+        product.photo = this.imagePreview; // Set the base64 image data as photo URL
+      }
       this.products.addProduct(product);
       this.myForm.reset();
+      this.imagePreview = null;
     }
   }
+
 }

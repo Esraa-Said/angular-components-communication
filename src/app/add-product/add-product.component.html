@@ -13,7 +13,7 @@
 
       <div class="form-elements">
         <label for="photo">Product Photo</label>
-        <input type="text" placeholder="product photo (External URL)" id="photo" formControlName="photo" />
+        <input type="file" placeholder="product photo" id="photo" accept="image/*" (change)="onFileSelected($event)" formControlName="photo" />
       </div>
 
       <div class="form-elements">
