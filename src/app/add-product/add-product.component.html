@@ -4,16 +4,70 @@
       <h2>Add Product</h2>
       <div class="form-elements">
         <label for="name">Product Name</label>
-        <input type="text" placeholder="product name"  id="name" formControlName="name"/>
+        <input
+          type="text"
+          placeholder="product name"
+          id="name"
+          formControlName="name"
+        />
+        <div
+        class="msg"
+        *ngIf="myForm.get('name')?.invalid && myForm.get('name')?.touched"
+      >
+        <div *ngIf="myForm.get('name')?.errors?.['required']">
+          *name is required.
+        </div>
+        
+      </div>
       </div>
       <div class="form-elements">
         <label for="price">Product Price</label>
-        <input type="text" placeholder="product price"  id="price" formControlName="price"/>
+        <input
+          type="text"
+          placeholder="product price"
+          id="price"
+          formControlName="price"
+        />
+        <div
+          class="msg"
+          *ngIf="myForm.get('price')?.invalid && myForm.get('price')?.touched"
+        >
+          <div *ngIf="myForm.get('price')?.errors?.['required']">
+            *price is required.
+          </div>
+          <div *ngIf="myForm.get('price')?.errors?.['pattern']">
+            *price must be only valid numbers.
+          </div>
+        </div>
       </div>
 
       <div class="form-elements">
         <label for="photo">Product Photo</label>
-        <input type="file" placeholder="product photo" id="photo" accept="image/*" (change)="onFileSelected($event)" formControlName="photo" />
+        <input
+          type="file"
+          placeholder="product photo"
+          id="photo"
+          accept="image/*"
+          (change)="onFileSelected($event)"
+          formControlName="photo"
+        />
+        <div
+          class="msg"
+          *ngIf="myForm.get('photo')?.invalid && myForm.get('photo')?.touched"
+        >
+          <div *ngIf="myForm.get('photo')?.errors?.['required']">
+            *image is required.
+          </div>
+        </div>
+
+        <div
+          class="msg"
+          *ngIf=" 
+            !fileValid
+          "
+        >
+          *Only image files (png, jpeg, gif, svg) are allowed.
+        </div>
       </div>
 
       <div class="form-elements">

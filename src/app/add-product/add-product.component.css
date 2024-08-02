@@ -64,3 +64,11 @@ button:hover {
     background-color: #0056b3;
   }
   
+.msg{
+  color: red;
+  font-size: x-small;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
